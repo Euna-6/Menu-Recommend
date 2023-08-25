@@ -27,11 +27,9 @@ class ListActivity : AppCompatActivity() {
         // binding.recyclerView.adapter = MenuAdapter(datas)
         binding.recyclerView.adapter = MenuAdapter(MenuItem.menuList)
 
-
         // 아이템 갯수 확인
-        val count = binding.recyclerView.adapter!!.itemCount
+        //val count = binding.recyclerView.adapter!!.itemCount
         //datas.add(MenuItem("$count"))
-
 
     }
 }
