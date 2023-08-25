@@ -13,15 +13,18 @@ class MenuAdapter(val itemList : ArrayList<MenuItem>) : RecyclerView.Adapter<Men
     }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
-        holder.tvItem.text = itemList[position].menu
+        //holder.tvItem.text = itemList[position].menu
+        holder.bind(itemList[position])
     }
 
     override fun getItemCount(): Int {
         return itemList.count()
     }
 
-
     inner class MenuViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvItem = itemView.findViewById<TextView>(R.id.tv_item)
+        fun bind(menuItem : MenuItem){
+            tvItem.text = menuItem.menu
+        }
     }
 }

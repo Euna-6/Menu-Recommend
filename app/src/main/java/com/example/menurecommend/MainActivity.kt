@@ -16,9 +16,15 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setTitle("")
 
+        binding.btnMenu.setOnClickListener {
+
+        }
+
         binding.btnList.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
     }
+
+
 }

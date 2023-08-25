@@ -15,13 +15,23 @@ class ListActivity : AppCompatActivity() {
         supportActionBar?.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        /* 테스트용 데이터
         val datas = ArrayList<MenuItem>()
         datas.add(MenuItem("떡볶이"))
         datas.add(MenuItem("라면"))
         datas.add(MenuItem("순대"))
+         */
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = MenuAdapter(datas)
+        // 테스트용 데이터 사용할 때
+        // binding.recyclerView.adapter = MenuAdapter(datas)
+        binding.recyclerView.adapter = MenuAdapter(MenuItem.menuList)
+
+
+        // 아이템 갯수 확인
+        val count = binding.recyclerView.adapter!!.itemCount
+        //datas.add(MenuItem("$count"))
+
 
     }
 }
