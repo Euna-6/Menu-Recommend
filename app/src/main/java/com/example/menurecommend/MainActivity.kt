@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.menurecommend.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,18 +20,30 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.setTitle("")
+
+        // 메뉴 리스트를 mutableList에 저장
+        var menuList = mutableListOf<String>()
+        var db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        db.collection("menu")
+            .get()
+            .addOnSuccessListener { result->
+                for (document in result) {
+                    menuList.add(document.data.get("menu").toString())
+                }
+            }
+
 
         val random = Random()
         binding.btnMenu.setOnClickListener {
             val num = random.nextInt(cnt)
-            val name = MenuItem.menuList[num].menu
+            val name = menuList[num]
             binding.btnMenu.setText(name)
         }
 
         binding.btnList.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
+            intent.putStringArrayListExtra("menuList", ArrayList(menuList))
             startActivity(intent)
         }
 

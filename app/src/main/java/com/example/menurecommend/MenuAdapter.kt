@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(val itemList : ArrayList<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>(){
+class MenuAdapter(val itemList : java.util.ArrayList<String>) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
         return MenuViewHolder(view)
@@ -23,8 +23,8 @@ class MenuAdapter(val itemList : ArrayList<MenuItem>) : RecyclerView.Adapter<Men
 
     inner class MenuViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvItem = itemView.findViewById<TextView>(R.id.tv_item)
-        fun bind(menuItem : MenuItem){
-            tvItem.text = menuItem.menu
+        fun bind(menuItem : String){
+            tvItem.text = menuItem
         }
     }
 }
