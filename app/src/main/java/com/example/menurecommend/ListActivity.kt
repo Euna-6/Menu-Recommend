@@ -13,14 +13,20 @@ class ListActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        overridePendingTransition(R.anim.bottonone, R.anim.none)
+        overridePendingTransition(R.anim.bottonone, R.anim.none)    // 화면 전환 효과
 
         val menuList = intent.getStringArrayListExtra("menuList")
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = menuList?.let { MenuAdapter(it) }
 
-
-
     }
+
+    // 메인 액티비티로 돌아갈 때
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0,0)
+    }
+
+
 }
