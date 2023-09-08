@@ -13,15 +13,14 @@ class ListActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        overridePendingTransition(R.anim.bottonone, R.anim.none)
 
         val menuList = intent.getStringArrayListExtra("menuList")
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = menuList?.let { MenuAdapter(it) }
 
-        // 아이템 갯수 확인
-        //val count = binding.recyclerView.adapter!!.itemCount
-        //datas.add(MenuItem("$count"))
+
 
     }
 }

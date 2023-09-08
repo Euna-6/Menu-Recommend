@@ -3,16 +3,13 @@ package com.example.menurecommend
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.example.menurecommend.databinding.ActivityMainBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    val cnt = MenuItem.menuList.count()
     var backKeyPressedTime : Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +30,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-
         val random = Random()
         binding.btnMenu.setOnClickListener {
-            val num = random.nextInt(cnt)
+            val num = random.nextInt(menuList.size)
             val name = menuList[num]
             binding.btnMenu.setText(name)
         }
@@ -45,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ListActivity::class.java)
             intent.putStringArrayListExtra("menuList", ArrayList(menuList))
             startActivity(intent)
+            overridePendingTransition(R.anim.none, R.anim.nonetotop)
         }
 
 
